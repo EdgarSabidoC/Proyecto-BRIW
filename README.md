@@ -1,5 +1,16 @@
 # Proyecto-BRIW
 
+## Características del sistema de búsqueda y recuperación de información en español a partir de Solr.
+
+- Crawling de páginas HTML
+- Preprocesamiento de texto en español
+- Búsqueda booleana
+- Relevancia ponderada
+- Sugerencias en el llenado
+- Sugerencias de corrección
+- Resultados con snipets
+- Expansión semántica en español
+
 ## Integrantes
 |<img src="https://user-images.githubusercontent.com/63131135/187343349-bee2fc8d-87ad-4eff-9f3d-303994341125.png" width=200px>|<img src="https://user-images.githubusercontent.com/63131135/187343429-ee08196d-2ceb-496e-98a9-d9cf4b60bac3.png" width=200px>|<img src="https://user-images.githubusercontent.com/63131135/187343618-0fa57372-033f-4e51-97b7-98ac43abe592.png" width=200px>|
 |:---:|:---:|:---:|
