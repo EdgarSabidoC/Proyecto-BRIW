@@ -50,7 +50,6 @@
 									<li>Relevancia ponderada</li>
 									<li>Sugerencias en el llenado</li>
 									<li>Sugerencias de corrección</li>
-									<li>Búsqueda facetada</li>
 									<li>Resultados con snipets</li>
 									<li>Expansión semántica en español</li>
 								</ul>

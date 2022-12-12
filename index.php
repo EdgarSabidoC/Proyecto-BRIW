@@ -54,12 +54,79 @@
 				</div>
 			</header>
 			<!-- Este contenedor se genera a partir del script de PHP -->
+			<section id='correct' class='container'>
+				<?php
+					if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+						include_once 'scripts/Solr/querySolrFunctions.php';
+						$query = $_POST['searchBox'];
+						$terms = get_spell_terms($query);
+						if(!empty($terms)){
+							echo
+							"
+								<div class='card-body'>
+									<div class='badge bg-primary bg-gradient rounded-pill mb-2'>¿Quizás intentaste decir?</div>
+									<div class='d-flex'>
+										<div class='ms-3'>
+							";
+							
+							echo "
+							<form id='tmpForm' method='POST' onsubmit='submit()'>
+								<input name='searchBox' type='hidden' value='{$terms}' class='form-control px-4' id='search' placeholder='Buscar...'>
+								<input type='submit' class='fw-bold text-white' name='submitButton' value='{$terms}' style='background: transparent; border: none'>
+							</form>
+							";
+							echo
+							"
+										</div>
+									</div>
+								</div>
+							";
+						}
+					}
+				?>
+			</section>
 			<section id='container' class='container'>
 				<?php
 					if ($_SERVER['REQUEST_METHOD'] == 'POST'
 						&& isset($_POST['submitButton'])
 						&& !empty($_POST['submitButton'])) {
-							require 'scripts/queryScript.php';
+							include_once 'scripts/queryScript.php';
+					}
+				?>
+			</section>
+			<section id='suggest' class='container'>
+				<?php
+					if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+						include_once 'scripts/Solr/querySolrFunctions.php';
+						$query = $_POST['searchBox'];
+						$arr_terms = get_suggest_terms($query);
+						if(!empty($query) && !empty($arr_terms)){
+							echo
+							"
+							<div class='card bg-light h-100'>
+								<div class='card-body'>
+									<div class='badge bg-primary bg-gradient rounded-pill mb-2'>Búsquedas relacionadas</div>
+									<div class='d-flex'>
+										<div class='ms-3'>
+							";
+							foreach ($arr_terms as $value) {
+								echo
+								"
+								<form id='tmpForm' method='POST' onsubmit='submit()'>
+									<input name='searchBox' type='hidden' value='{$value}' class='form-control px-4' id='search' placeholder='Buscar...'>
+									<input type='submit' class='fw-bold' name='submitButton' value='{$value}' style='background: transparent; border: none'>
+								</form>
+								";
+								include_once 'scripts/queryScript.php';
+							}
+							echo
+							"
+										</div>
+									</div>
+								</div>
+							</div>
+							";
+						}
 					}
 				?>
 			</section>
@@ -201,6 +268,12 @@
 		autocomplete(document.getElementById("search"), allText.split('\n'));
 	</script>
 	<!--Termina Script-->
+	<script type='text/javascript'>
+		function submit(cadena){
+			document.getElemenById("tmpForm").remove();
+			document.getElementById("search").value = cadena;
+		}
+	</script>
 	<?php
 		include_once 'scripts/Solr/querySolrFunctions.php';
 		file_title_documents();
