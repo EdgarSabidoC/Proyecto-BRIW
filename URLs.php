@@ -105,7 +105,7 @@
 				&& !isset($_COOKIE['user'])
 				&& !isset($_COOKIE['myUrls'])) {
 					include_once 'scripts/Crawler/uploadURLs.php';
-					setcookie("index", 3, time()+30);
+					setcookie("index", 3, time()+12);
 					header('Refresh:0');
 				} elseif($_SERVER['REQUEST_METHOD'] === 'POST'
 				&& isset($_POST['save'])){
@@ -120,7 +120,7 @@
 				&& isset($_COOKIE['user'])
 				&& isset($_COOKIE['myUrls'])){
 					include_once 'scripts/Crawler/uploadURLs.php';
-					setcookie("index", 3, time()+30);
+					setcookie("index", 3, time()+12);
 					header('Refresh:0');
 				}
 			?>

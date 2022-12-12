@@ -68,7 +68,6 @@
 									<div class='d-flex'>
 										<div class='ms-3'>
 							";
-							
 							echo "
 							<form id='tmpForm' method='POST' onsubmit='submit()'>
 								<input name='searchBox' type='hidden' value='{$terms}' class='form-control px-4' id='search' placeholder='Buscar...'>

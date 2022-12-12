@@ -583,7 +583,7 @@ function get_all_title_documents() {
 
 
     $arrayDocuments = array();
-    if($result["response"]["docs"]!=null){
+    if(isset($result["response"]) && isset($result["response"]["docs"])){
         if ($result["response"]["docs"] > 0) {
             foreach ($result["response"]["docs"] as $fields) {
                 $arrDocument = array(
