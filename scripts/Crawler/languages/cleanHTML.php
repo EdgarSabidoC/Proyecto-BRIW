@@ -19,6 +19,7 @@
 		$snippet = '';
 		$keywords = [];
 		$meta = '';
+		$keyword_len = 3;
 
 		// Se obtiene el título de la página:
 		if($title = return_between($inputStr, '<title>', '</title>', 'EXCL')){
@@ -35,25 +36,33 @@
 			$meta = mb_convert_encoding($meta, 'UTF-8', mb_detect_encoding($meta));
 			$keywords = array_unique(explode(',', $meta));
 			foreach($keywords as $key => $word){
-				$keywords[$key] = ucfirst(trim($word));
+				if(strlen($word) > $keyword_len){
+					$keywords[$key] = ucfirst(trim($word));
+				}
 			}
 		} elseif($meta = return_between($inputStr, "<meta name=keywords content='", "'>", 'EXCL')){
 			$meta = mb_convert_encoding($meta, 'UTF-8', mb_detect_encoding($meta));
 			$keywords = array_unique(explode(',', $meta));
 			foreach($keywords as $key => $word){
-				$keywords[$key] = ucfirst(trim($word));
+				if(strlen($word) > $keyword_len){
+					$keywords[$key] = ucfirst(trim($word));
+				}
 			}
 		} elseif($meta = return_between($inputStr, "<meta name='keywords' content='", "'>", 'EXCL')){
 			$meta = mb_convert_encoding($meta, 'UTF-8', mb_detect_encoding($meta));
 			$keywords = array_unique(explode(',', $meta));
 			foreach($keywords as $key => $word){
-				$keywords[$key] = ucfirst(trim($word));
+				if(strlen($word) > $keyword_len){
+					$keywords[$key] = ucfirst(trim($word));
+				}
 			}
 		} elseif($meta = return_between($inputStr, '<meta name="keywords" content="', '">', 'EXCL')){
 			$meta = mb_convert_encoding($meta, 'UTF-8', mb_detect_encoding($meta));
 			$keywords = array_unique(explode(',', $meta));
 			foreach($keywords as $key => $word){
-				$keywords[$key] = ucfirst(trim($word));
+				if(strlen($word) > $keyword_len){
+					$keywords[$key] = ucfirst(trim($word));
+				}
 			}
 		}
 
